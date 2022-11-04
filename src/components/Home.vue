@@ -40,7 +40,7 @@ import TransactionsTable from './TransactionsTable.vue'
       <h4 class="mt-10 text-md font-medium dark:(text-gray-400)">
         Latest Transactions
       </h4>
-      <TransactionsTable />
+      <TransactionsTable class="mt-5" />
     </section>
   </div>
 </template>

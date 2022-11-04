@@ -1,5 +1,5 @@
 <template>
     <nav class="list-none flex justify-between px-5 py-6 dark:(bg-dark-400/80)">
-        <div>Unbound</div>
+        <h3>Unbound <span class=" font-bold gradient-text">V2</span></h3>
     </nav>
 </template>

@@ -1,5 +1,5 @@
 .gradient-text {
-    background: linear-gradient(to right, #8bd6ff, #32b3f9);
+    background: linear-gradient(to bottom right, #2a93cc, #4abcf9);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
@@ -9,3 +9,4 @@
     padding: 0;
     box-sizing: border-box;
 }
+
