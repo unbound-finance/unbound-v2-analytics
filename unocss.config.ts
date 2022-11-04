@@ -16,6 +16,7 @@ export default defineConfig({
       provider: "bunny",
       fonts: {
         mont: "Montserrat:300,400,500,600,700,900",
+        inter: "inter:300,400,500,600,700,900",
       },
     }),
   ],
