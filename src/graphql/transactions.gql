@@ -1,0 +1,10 @@
+query {
+  transactions (first: 10) {
+    id
+    type
+    timestamp
+    vault {
+      id
+    }
+  }
+}
