@@ -6,9 +6,29 @@
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+a {
+    @apply text-blue-600 underline-transparent;
+}
+
+a:hover {
+    @apply underline-current;
+}
+
+table {
+    @apply p-5 bg-dark-500/80 w-full rounded-xl overflow-x-scroll text-sm md:text-base;
+}
+
+table tr td {
+    @apply p-2 pt-4;
+}
+
+table th {
+    @apply text-base text-gray-400 font-medium pb-2 text-left;
+}

@@ -5,7 +5,7 @@ import {
 } from "@apollo/client/core";
 import { subgraphUrls } from "../constants";
 
-function getApolloClient(chainId: number) {
+export function getApolloClient(chainId: number) {
   // HTTP connection to the API
   const httpLink = createHttpLink({
     // You should use an absolute URL here
@@ -21,5 +21,3 @@ function getApolloClient(chainId: number) {
     cache,
   });
 }
-
-export const goerliClient = getApolloClient(5);

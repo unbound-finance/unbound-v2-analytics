@@ -3,7 +3,7 @@ import TransactionsTable from "./TransactionsTable.vue";
 </script>
 
 <template>
-  <div class="w-screen px-8 md:px-20">
+  <div class="w-screen px-8 md:px-20 pb-10">
     <h4 class="mt-10 text-md font-medium dark:(text-gray-400)">
       Unbound v2 Analytics
     </h4>
