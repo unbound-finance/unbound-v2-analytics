@@ -3,7 +3,7 @@ import { useQuery } from "@vue/apollo-composable";
 import lptByChain from "../config/lptByChain";
 
 // @ts-ignore
-import txnsQuery from "../graphql/transactions.gql";
+import liquidationsQuery from "../graphql/liquidations.gql";
 import { useWeb3Store } from "../store";
 import DoubleLogo from "./DoubleLogo.vue";
 
@@ -11,7 +11,7 @@ import { getIconUrl } from "../utils";
 
 import dayjs from "dayjs";
 import RelativeTimePlugin from "dayjs/plugin/relativeTime";
-import { explorerUrls, txnType } from "../constants";
+import { explorerUrls } from "../constants";
 
 dayjs.extend(RelativeTimePlugin);
 
@@ -20,7 +20,7 @@ const { chainId } = useWeb3Store();
 
 // GraphQL
 const { result, loading } = useQuery(
-  txnsQuery,
+  liquidationsQuery,
   {},
   { clientId: chainId.toString() }
 );
@@ -33,7 +33,10 @@ const columns = [
     label: "Transaction",
   },
   {
-    label: "Type",
+    label: "Debt",
+  },
+  {
+    label: "Collateral",
   },
   {
     label: "Time",
@@ -50,7 +53,13 @@ const columns = [
     </tbody>
     <tbody v-else>
       <tr
-        v-for="{ id, type, timestamp, vault } in result.transactions"
+        v-for="{
+          id,
+          timestamp,
+          vault,
+          debt,
+          collateral,
+        } in result.liquidations"
         :key="id"
         class="p-5"
       >
@@ -77,9 +86,25 @@ const columns = [
           }}</a>
         </td>
         <td>
-          <span class="border border-gray-500 text-sm p-2 px-3 rounded-xl">{{
-            txnType[type]
-          }}</span>
+          <div class="flex space-x-1.5 items-center">
+            <img
+              src="../assets/und.webp"
+              alt="UND"
+              class="rotate-90"
+              width="16"
+            />
+            <span>{{ debt / 1e18 }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="flex space-x-1.5 items-center">
+            <DoubleLogo
+              :url0="getIconUrl(lptByChain[chainId][vault.id].token0)"
+              :url1="getIconUrl(lptByChain[chainId][vault.id].token1)"
+              :width="18"
+            />
+            <span>{{ collateral / 1e18 }}</span>
+          </div>
         </td>
         <td>{{ dayjs(timestamp * 1000).from(dayjs()) }}</td>
       </tr>

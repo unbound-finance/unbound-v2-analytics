@@ -1,0 +1,13 @@
+query {
+  redemptions(first: 5) {
+    id
+    vault {
+      id
+    }
+    timestamp
+    collateralSent
+    collateralFee
+    redeemer
+    undReceived
+  }
+}

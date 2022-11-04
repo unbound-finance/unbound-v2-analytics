@@ -1,0 +1,11 @@
+query {
+  liquidations(first: 5) {
+    id
+    vault {
+      id
+    }
+    timestamp
+    debt
+    collateral
+  }
+}

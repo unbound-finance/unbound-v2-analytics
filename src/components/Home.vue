@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import LiquidationsTable from "./LiquidationsTable.vue";
+import RedemptionsTable from "./RedemptionsTable.vue";
 import TransactionsTable from "./TransactionsTable.vue";
 </script>
 
@@ -41,6 +43,16 @@ import TransactionsTable from "./TransactionsTable.vue";
         Latest Transactions
       </h4>
       <TransactionsTable class="mt-5" />
+
+      <h4 class="mt-10 text-md font-medium dark:(text-gray-400)">
+        Latest Liquidations
+      </h4>
+      <LiquidationsTable class="mt-5" />
+
+      <h4 class="mt-10 text-md font-medium dark:(text-gray-400)">
+        Latest Redemptions
+      </h4>
+      <RedemptionsTable class="mt-5" />
     </section>
   </div>
 </template>

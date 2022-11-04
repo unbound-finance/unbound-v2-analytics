@@ -19,6 +19,6 @@ export const txnType = {
   0: "Open Account",
   1: "Close Account",
   2: "Adjust Account",
-  3: "Unknown",
-  4: "Unknown",
+  3: "Liquidation",
+  4: "Redemption",
 } as Record<number, string>;

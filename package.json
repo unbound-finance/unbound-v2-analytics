@@ -16,7 +16,8 @@
     "graphql-tag": "^2.12.6",
     "pinia": "^2.0.23",
     "unocss": "^0.45.30",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-connect-wallet": "^0.1.7"
   },
   "devDependencies": {
     "@rollup/plugin-graphql": "^2.0.2",
