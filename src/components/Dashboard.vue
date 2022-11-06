@@ -5,6 +5,7 @@ import { useWeb3Store } from "../store";
 // @ts-ignore
 import vaultsQuery from "../graphql/vaults.gql";
 import { ref, watch } from "vue";
+import BorrowingRateCard from "./BorrowingRateCard.vue";
 
 // Store
 const { chainId } = useWeb3Store();
@@ -54,9 +55,6 @@ watch(result, () => {
       </div>
     </div>
 
-    <div class="bg-white dark:bg-dark-500/80 min-h-xs rounded-xl p-5">
-      <h4 class="font-medium text-sm dark:(text-gray-400)">Borrowing rate</h4>
-      <h1>$34.53</h1>
-    </div>
+    <BorrowingRateCard />
   </div>
 </template>

@@ -1,3 +1,7 @@
+// Numeric Constants
+export const BORROWING_FEE_FLOOR = 0.5 // 0.5%
+
+// Interface Constants
 export const explorerUrls = {
   5: "https://goerli.etherscan.io",
 } as Record<number, string>;
