@@ -18,10 +18,17 @@ export default defineConfig({
       fonts: {
         mont: "Montserrat:300,400,500,600,700,900",
         inter: "inter:300,400,500,600,700,900",
+        akira: {
+          provider: "none",
+          name: "Akira Expanded",
+        },
       },
     }),
   ],
-  transformers: [transformerVariantGroup(), transformerDirectives({
-    varStyle: '--my-at-'
-  })],
+  transformers: [
+    transformerVariantGroup(),
+    transformerDirectives({
+      varStyle: "--my-at-",
+    }),
+  ],
 });

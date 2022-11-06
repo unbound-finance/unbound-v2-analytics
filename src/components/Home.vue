@@ -7,9 +7,22 @@ import TransactionsTable from "./TransactionsTable.vue";
 
 <template>
   <div class="px-8 md:px-20 pb-10 overflow-auto">
-    <h4 class="mt-10 text-md font-medium dark:(text-gray-400)">
+    <!-- <h4 class="mt-10 text-md font-medium dark:(text-gray-400)">
       Unbound v2 Analytics
-    </h4>
+    </h4> -->
+
+    <header class="mt-15 mb-10 flex justify-between items-center">
+      <div>
+        <h3 class="font-akira">
+          Unbound <span class="font-bold gradient-text">V2</span>
+        </h3>
+        <h1 class="font-akira">Analytics</h1>
+      </div>
+
+      <div class="pr-2">
+        <span class="border border-white text-sm p-2 px-4 rounded-full">Goerli</span>
+      </div>
+    </header>
 
     <Dashboard class="mt-5" />
 
