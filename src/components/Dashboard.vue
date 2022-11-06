@@ -36,7 +36,7 @@ watch(result, () => {
 <template>
   <div v-if="loading">Loading...</div>
   <div v-else class="w-full space-y-3 sm:(space-y-0 grid grid-cols-2 gap-5)">
-    <div class="flex flex-col space-y-3 justify-between">
+    <div class="flex flex-col space-y-3 sm:(space-y-0) justify-between">
       <div class="bg-white dark:bg-dark-500/80 rounded-xl p-5">
         <h4 class="font-medium text-sm dark:(text-gray-400)">
           Collateral Locked
