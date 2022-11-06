@@ -5,7 +5,13 @@ import { createPinia } from "pinia";
 import "uno.css";
 
 import { Jazzicon } from "vue-connect-wallet";
+import VueApexCharts from "vue3-apexcharts";
 
 const app = createApp(App);
+
+app.use(VueApexCharts);
+app.use(createPinia());
+
 app.component("jazzicon", Jazzicon);
-app.use(createPinia()).mount("#app");
+
+app.mount("#app");
