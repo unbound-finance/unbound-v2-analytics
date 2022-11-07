@@ -21,7 +21,7 @@ provide(ApolloClients, apolloOptions);
 <template>
   <div class="w-full font-inter dark overflow-hidden">
     <div
-      class="w-full min-h-screen bg-true-gray-100 dark:(text-white bg-gradient-to-b from-light-blue-600 via-light-blue-900 to-black )"
+      class="radial-gradient w-full min-h-screen bg-true-gray-100 dark:(text-white)"
     >
       <!-- <Navbar /> -->
       <Home />

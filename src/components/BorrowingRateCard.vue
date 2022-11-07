@@ -28,7 +28,7 @@ watch(result, () => {
   currentBaseRate.value = (
     +baseRates[baseRates.length - 1].rate / 1e18 +
     BORROWING_FEE_FLOOR
-  ).toPrecision(6);
+  ).toFixed(2);
 
   // Set chart values
   (options as any).xaxis.categories = baseRates.map((val) =>
@@ -77,7 +77,7 @@ const series = ref([
 </script>
 
 <template>
-  <div class="bg-white dark:bg-dark-500/80 min-h-xs rounded-xl p-5">
+  <div class="bg-white dark:bg-dark-800/90 min-h-xs rounded-xl p-5">
     <template v-if="loading">Loading...</template>
     <template v-else>
       <h4 class="font-medium text-sm dark:(text-gray-400)">Borrowing rate</h4>

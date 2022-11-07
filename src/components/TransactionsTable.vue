@@ -12,6 +12,7 @@ import { getIconUrl } from "../utils";
 import dayjs from "dayjs";
 import RelativeTimePlugin from "dayjs/plugin/relativeTime";
 import { explorerUrls, txnType } from "../constants";
+import ShortAddress from "./ShortAddress.vue";
 
 dayjs.extend(RelativeTimePlugin);
 
@@ -72,9 +73,9 @@ const columns = [
           </div>
         </td>
         <td>
-          <a :href="explorerUrls[chainId] + '/tx/' + id" target="_blank">{{
-            id
-          }}</a>
+          <a :href="explorerUrls[chainId] + '/tx/' + id" target="_blank">
+            <ShortAddress :address="id"
+          /></a>
         </td>
         <td>
           <span class="border border-gray-500 text-sm p-2 px-3 rounded-xl">{{
