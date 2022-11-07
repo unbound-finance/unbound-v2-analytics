@@ -19,11 +19,14 @@ const { result, loading } = useQuery(
 
 const totalCollateral = ref(0);
 const totalDebt = ref(0);
-const totalAccounts = ref(0);
+const totalVaults = ref(0);
 
 watch(result, () => {
   const length = result.value.vaults.length;
-  totalAccounts.value = length;
+
+  // Considering only one factory
+  totalVaults.value = result.value.factories[0].count;
+
   if (length === 0) return;
 
   result.value.vaults.forEach((vault: any) => {
@@ -36,22 +39,24 @@ watch(result, () => {
 <template>
   <div v-if="loading">Loading...</div>
   <div v-else class="w-full space-y-3 sm:(space-y-0 grid grid-cols-2 gap-5)">
-    <div class="flex flex-col space-y-3 sm:(space-y-0) justify-between">
-      <div class="bg-white dark:bg-dark-800/90 rounded-xl p-5">
+    <div
+      class="bg-white dark:bg-dark-800/90 rounded-xl p-6 flex flex-col justify-between"
+    >
+      <div>
         <h4 class="font-medium text-sm dark:(text-gray-400)">
           Collateral Locked
         </h4>
-        <h1 class="mt-1">{{ totalCollateral }}</h1>
+        <h1 class="mt-1 text-4xl">{{ totalCollateral }}</h1>
       </div>
-      <div class="bg-white dark:bg-dark-800/90 rounded-xl p-5">
+      <div>
         <h4 class="font-medium text-sm dark:(text-gray-400)">
           Total Debt Taken
         </h4>
-        <h1 class="mt-1">{{ totalDebt }}</h1>
+        <h1 class="mt-1 text-4xl">{{ totalDebt }}</h1>
       </div>
-      <div class="bg-white dark:bg-dark-800/90 rounded-xl p-5">
-        <h4 class="font-medium text-sm dark:(text-gray-400)">Total Accounts</h4>
-        <h1 class="mt-1">{{ totalAccounts }}</h1>
+      <div>
+        <h4 class="font-medium text-sm dark:(text-gray-400)">Total Vaults</h4>
+        <h1 class="mt-1 text-4xl">{{ totalVaults }}</h1>
       </div>
     </div>
 

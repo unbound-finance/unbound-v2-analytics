@@ -83,7 +83,7 @@ const series = ref([
       <h4 class="font-medium text-sm dark:(text-gray-400)">Borrowing rate</h4>
       <h1>{{ currentBaseRate }}%</h1>
 
-      <apexchart height="250" type="line" :options="options" :series="series"></apexchart>
+      <apexchart height="200" type="line" :options="options" :series="series"></apexchart>
     </template>
   </div>
 </template>

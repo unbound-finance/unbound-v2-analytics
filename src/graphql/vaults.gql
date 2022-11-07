@@ -4,4 +4,8 @@ query {
     totalCollateral
     totalDebt
   }
+  factories(first: 5) {
+    id
+    count
+  }
 }
