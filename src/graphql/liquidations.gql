@@ -1,5 +1,5 @@
 query {
-  liquidations(first: 5) {
+  liquidations(first: 10) {
     id
     vault {
       id

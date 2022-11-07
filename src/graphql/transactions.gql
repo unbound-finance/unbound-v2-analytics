@@ -1,5 +1,5 @@
 query {
-  transactions (first: 5) {
+  transactions (first: 10) {
     id
     type
     timestamp

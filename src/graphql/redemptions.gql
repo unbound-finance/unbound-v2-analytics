@@ -1,5 +1,5 @@
 query {
-  redemptions(first: 5) {
+  redemptions(first: 10) {
     id
     vault {
       id

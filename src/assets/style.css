@@ -15,7 +15,7 @@
 }
 
 .radial-gradient {
-    background: radial-gradient(circle closest-corner at 50% -15%,#004870, #212121);
+    background: radial-gradient(circle closest-corner at 50% -15%,#004870, #202020);
 }
 
 a {
