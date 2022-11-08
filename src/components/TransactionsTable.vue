@@ -22,8 +22,6 @@ dayjs.extend(RelativeTimePlugin);
 // Store
 const { chainId } = useWeb3Store();
 
-const orderBy = ref("timestamp");
-const orderDirection = ref("desc");
 const txns = ref([] as any[]);
 
 const columns = [
@@ -55,8 +53,8 @@ const sorted = {
 const { result, loading, variables } = useQuery(
   txnsQuery,
   {
-    orderBy: orderBy.value,
-    orderDirection: orderDirection.value,
+    orderBy: "timestamp",
+    orderDirection: "desc",
   },
   { clientId: chainId.toString() }
 );
