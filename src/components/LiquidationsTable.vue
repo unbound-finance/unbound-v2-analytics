@@ -37,10 +37,10 @@ const columns = [
     label: "Liquidator",
   },
   {
-    label: "Debt",
+    label: "Collateral",
   },
   {
-    label: "Collateral",
+    label: "Debt",
   },
   {
     label: "Time",
@@ -104,6 +104,16 @@ const columns = [
         </td>
         <td>
           <div class="flex space-x-1.5 items-center">
+            <DoubleLogo
+              :url0="getIconUrl(lptByChain[chainId][vault.id].token0)"
+              :url1="getIconUrl(lptByChain[chainId][vault.id].token1)"
+              :width="18"
+            />
+            <span>{{ collateral / 1e18 }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="flex space-x-1.5 items-center">
             <img
               src="../assets/und.webp"
               alt="UND"
@@ -111,16 +121,6 @@ const columns = [
               width="16"
             />
             <span>{{ debt / 1e18 }}</span>
-          </div>
-        </td>
-        <td>
-          <div class="flex space-x-1.5 items-center">
-            <DoubleLogo
-              :url0="getIconUrl(lptByChain[chainId][vault.id].token0)"
-              :url1="getIconUrl(lptByChain[chainId][vault.id].token1)"
-              :width="18"
-            />
-            <span>{{ collateral / 1e18 }}</span>
           </div>
         </td>
         <td>{{ dayjs(timestamp * 1000).from(dayjs()) }}</td>
