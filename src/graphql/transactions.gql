@@ -1,5 +1,5 @@
-query {
-  transactions (first: 10) {
+query ($orderBy: String!, $orderDirection: String!) {
+  transactions(first: 10, orderBy: $orderBy, orderDirection: $orderDirection) {
     id
     type
     timestamp

@@ -22,10 +22,16 @@ dayjs.extend(RelativeTimePlugin);
 // Store
 const { chainId } = useWeb3Store();
 
+const orderBy = ref("timestamp");
+const orderDirection = ref("desc");
+
 // GraphQL
-const { result, loading } = useQuery(
+const { result, loading, variables } = useQuery(
   txnsQuery,
-  {},
+  {
+    orderBy: orderBy.value,
+    orderDirection: orderDirection.value,
+  },
   { clientId: chainId.toString() }
 );
 
@@ -61,11 +67,19 @@ const sorted = {
 } as Record<string, boolean>;
 
 function sort(column: string, value: string) {
-  if (sorted[column])
-    txns.value = txns.value.slice().sort((a, b) => a[value] - b[value]);
-  else txns.value = txns.value.slice().sort((a, b) => b[value] - a[value]);
+  // Update Query variables. Will trigger a refetch
+  variables.value = {
+    orderBy: value,
+    orderDirection: !sorted[column] ? "asc" : "desc",
+  };
 
   sorted[column] = !sorted[column];
+
+  // Set all others to false
+  Object.keys(sorted).forEach((val) => {
+    if (val === column) return;
+    sorted[val] = false;
+  });
 }
 </script>
 <template>
@@ -80,7 +94,7 @@ function sort(column: string, value: string) {
           <span>{{ label }}</span>
           <component
             v-if="sortable"
-            :is="sorted[label.toLowerCase()] ? ChevronDownIcon : ChevronUpIcon"
+            :is="sorted[label.toLowerCase()] ? ChevronUpIcon : ChevronDownIcon"
           />
         </div>
       </th>
