@@ -12,7 +12,10 @@ import { getIconUrl } from "../utils";
 import dayjs from "dayjs";
 import RelativeTimePlugin from "dayjs/plugin/relativeTime";
 import { explorerUrls, txnType } from "../constants";
+import ChevronUpIcon from "vue-material-design-icons/ChevronUp.vue";
+import ChevronDownIcon from "vue-material-design-icons/ChevronDown.vue";
 import ShortAddress from "./ShortAddress.vue";
+import { ref, watch } from "vue";
 
 dayjs.extend(RelativeTimePlugin);
 
@@ -26,6 +29,12 @@ const { result, loading } = useQuery(
   { clientId: chainId.toString() }
 );
 
+const txns = ref([] as any[]);
+
+watch(result, () => {
+  txns.value = result.value.transactions;
+});
+
 const columns = [
   {
     label: "Vault",
@@ -35,26 +44,52 @@ const columns = [
   },
   {
     label: "Type",
+    value: "type",
+    sortable: true,
   },
   {
     label: "Time",
+    value: "timestamp",
+    sortable: true,
   },
 ];
+
+// If column names are sorted or not
+const sorted = {
+  type: false,
+  time: false,
+} as Record<string, boolean>;
+
+function sort(column: string, value: string) {
+  if (sorted[column])
+    txns.value = txns.value.slice().sort((a, b) => a[value] - b[value]);
+  else txns.value = txns.value.slice().sort((a, b) => b[value] - a[value]);
+
+  sorted[column] = !sorted[column];
+}
 </script>
 <template>
   <table>
     <tr>
-      <th v-for="{ label } in columns" :key="label">{{ label }}</th>
+      <th v-for="{ label, sortable, value } in columns" :key="label">
+        <div
+          class="flex"
+          :class="sortable ? 'cursor-pointer' : ''"
+          @click="sortable && sort(label.toLowerCase(), value ?? '')"
+        >
+          <span>{{ label }}</span>
+          <component
+            v-if="sortable"
+            :is="sorted[label.toLowerCase()] ? ChevronDownIcon : ChevronUpIcon"
+          />
+        </div>
+      </th>
     </tr>
     <tbody v-if="loading">
       Loading...
     </tbody>
     <tbody v-else>
-      <tr
-        v-for="{ id, type, timestamp, vault } in result.transactions"
-        :key="id"
-        class="p-5"
-      >
+      <tr v-for="{ id, type, timestamp, vault } in txns" :key="id" class="p-5">
         <td class="min-w-[8rem]">
           <div class="flex items-center space-x-2">
             <DoubleLogo
