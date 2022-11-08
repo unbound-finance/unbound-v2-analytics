@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useQuery } from "@vue/apollo-composable";
+import { useMemoize } from "@vueuse/core";
 import { useWeb3Store } from "../store";
 
 // @ts-ignore
 import vaultsQuery from "../graphql/vaults.gql";
 import { ref, watch } from "vue";
 import BorrowingRateCard from "./BorrowingRateCard.vue";
+import { getCollateralPrice } from "../utils";
+import lptByChain from "../config/lptByChain";
 
 // Store
 const { chainId } = useWeb3Store();
@@ -21,6 +24,12 @@ const totalCollateral = ref(0);
 const totalDebt = ref(0);
 const totalVaults = ref(0);
 
+const getPrice = useMemoize(async (lpAddress: string) => {
+  return await getCollateralPrice(
+    lptByChain[chainId][lpAddress].borrowOperations
+  );
+});
+
 watch(result, () => {
   const length = result.value.vaults.length;
 
@@ -29,8 +38,9 @@ watch(result, () => {
 
   if (length === 0) return;
 
-  result.value.vaults.forEach((vault: any) => {
-    totalCollateral.value += vault.totalCollateral / 1e18;
+  result.value.vaults.forEach(async (vault: any) => {
+    totalCollateral.value +=
+      (vault.totalCollateral / 1e18) * (await getPrice(vault.id));
     totalDebt.value += vault.totalDebt / 1e18;
   });
 });
@@ -46,7 +56,7 @@ watch(result, () => {
         <h4 class="font-medium text-sm dark:(text-gray-400)">
           Collateral Locked
         </h4>
-        <h1 class="mt-1 text-4xl">{{ totalCollateral }}</h1>
+        <h1 class="mt-1 text-4xl">${{ totalCollateral.toFixed(2) }}</h1>
       </div>
       <div>
         <h4 class="font-medium text-sm dark:(text-gray-400)">

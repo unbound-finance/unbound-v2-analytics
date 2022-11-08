@@ -1,7 +1,11 @@
 // Numeric Constants
-export const BORROWING_FEE_FLOOR = 0.5 // 0.5%
+export const BORROWING_FEE_FLOOR = 0.5; // 0.5%
 
-// Interface Constants
+// Interface Constants (Chain-specific)
+export const rpcUrls = {
+  5: "https://eth-goerli.g.alchemy.com/v2/bUBow_fw7HN-4XVaMW4uwCgaf1awGxsA",
+} as Record<number, string>;
+
 export const explorerUrls = {
   5: "https://goerli.etherscan.io",
 } as Record<number, string>;
@@ -14,6 +18,7 @@ export const chainIdMapping = {
   5: "Goerli",
 } as Record<number, string>;
 
+// Interface Constants (General)
 export const tokenAliases = {
   weth: "ETH",
   wmatic: "MATIC",
