@@ -37,10 +37,7 @@ const columns = [
     label: "Redeemer",
   },
   {
-    label: "Collateral Sent",
-  },
-  {
-    label: "Collateral Fee",
+    label: "Collateral",
   },
   {
     label: "UND Received",
@@ -97,7 +94,11 @@ const columns = [
         <td>
           <div class="flex space-x-2 items-center">
             <jazzicon :diameter="20" :address="redeemer" />
-            <a class="mb-0.5" :href="explorerUrls[chainId] + '/address/' + id" target="_blank">
+            <a
+              class="mb-0.5"
+              :href="explorerUrls[chainId] + '/address/' + id"
+              target="_blank"
+            >
               <ShortAddress :address="redeemer" />
             </a>
           </div>
@@ -110,16 +111,6 @@ const columns = [
               :width="18"
             />
             <span>{{ collateralSent / 1e18 }}</span>
-          </div>
-        </td>
-        <td>
-          <div class="flex space-x-1.5 items-center">
-            <DoubleLogo
-              :url0="getIconUrl(lptByChain[chainId][vault.id].token0)"
-              :url1="getIconUrl(lptByChain[chainId][vault.id].token1)"
-              :width="18"
-            />
-            <span>{{ collateralFee / 1e18 }}</span>
           </div>
         </td>
         <td>

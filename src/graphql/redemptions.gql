@@ -6,7 +6,6 @@ query {
     }
     timestamp
     collateralSent
-    collateralFee
     redeemer
     undReceived
   }
