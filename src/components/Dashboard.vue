@@ -52,7 +52,17 @@ watch(result, () => {
         <h4 class="font-medium text-sm dark:(text-gray-400)">
           Total Debt Taken
         </h4>
-        <h1 class="mt-1 text-4xl">{{ totalDebt }}</h1>
+        <h1 class="mt-1 text-4xl">
+          <div class="flex space-x-2.5 items-center">
+            <img
+              src="../assets/und.webp"
+              alt="UND"
+              class="rotate-90"
+              width="26"
+            />
+            <span>{{ totalDebt }}</span>
+          </div>
+        </h1>
       </div>
       <div>
         <h4 class="font-medium text-sm dark:(text-gray-400)">Total Vaults</h4>
