@@ -15,14 +15,12 @@ import { explorerUrls, txnType } from "../constants";
 import ChevronUpIcon from "vue-material-design-icons/ChevronUp.vue";
 import ChevronDownIcon from "vue-material-design-icons/ChevronDown.vue";
 import ShortAddress from "./ShortAddress.vue";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 dayjs.extend(RelativeTimePlugin);
 
 // Store
 const { chainId } = useWeb3Store();
-
-const txns = ref([] as any[]);
 
 const columns = [
   {
@@ -58,10 +56,6 @@ const { result, loading, variables } = useQuery(
   },
   { clientId: chainId.toString() }
 );
-
-watch(result, () => {
-  txns.value = result.value.transactions;
-});
 
 function sort(column: string, value: string) {
   // Update Query variables. Will trigger a refetch
@@ -100,7 +94,11 @@ function sort(column: string, value: string) {
       Loading...
     </tbody>
     <tbody v-else>
-      <tr v-for="{ id, type, timestamp, vault } in txns" :key="id" class="p-5">
+      <tr
+        v-for="{ id, type, timestamp, vault } in result.transactions"
+        :key="id"
+        class="p-5"
+      >
         <td class="min-w-[8rem]">
           <div class="flex items-center space-x-2">
             <DoubleLogo
