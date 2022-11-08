@@ -96,7 +96,7 @@ const columns = [
             <jazzicon :diameter="20" :address="redeemer" />
             <a
               class="mb-0.5"
-              :href="explorerUrls[chainId] + '/address/' + id"
+              :href="explorerUrls[chainId] + '/address/' + redeemer"
               target="_blank"
             >
               <ShortAddress :address="redeemer" />

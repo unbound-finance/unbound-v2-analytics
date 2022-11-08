@@ -34,6 +34,9 @@ const columns = [
     label: "Transaction",
   },
   {
+    label: "Liquidator",
+  },
+  {
     label: "Debt",
   },
   {
@@ -60,6 +63,7 @@ const columns = [
           vault,
           debt,
           collateral,
+          liquidator,
         } in result.liquidations"
         :key="id"
         class="p-5"
@@ -85,6 +89,18 @@ const columns = [
           <a :href="explorerUrls[chainId] + '/tx/' + id" target="_blank">
             <ShortAddress :address="id" />
           </a>
+        </td>
+        <td>
+          <div class="flex space-x-2 items-center">
+            <jazzicon :diameter="20" :address="liquidator" />
+            <a
+              class="mb-0.5"
+              :href="explorerUrls[chainId] + '/address/' + liquidator"
+              target="_blank"
+            >
+              <ShortAddress :address="liquidator" />
+            </a>
+          </div>
         </td>
         <td>
           <div class="flex space-x-1.5 items-center">
