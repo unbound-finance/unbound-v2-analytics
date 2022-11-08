@@ -24,22 +24,7 @@ const { chainId } = useWeb3Store();
 
 const orderBy = ref("timestamp");
 const orderDirection = ref("desc");
-
-// GraphQL
-const { result, loading, variables } = useQuery(
-  txnsQuery,
-  {
-    orderBy: orderBy.value,
-    orderDirection: orderDirection.value,
-  },
-  { clientId: chainId.toString() }
-);
-
 const txns = ref([] as any[]);
-
-watch(result, () => {
-  txns.value = result.value.transactions;
-});
 
 const columns = [
   {
@@ -65,6 +50,20 @@ const sorted = {
   type: false,
   time: false,
 } as Record<string, boolean>;
+
+// GraphQL
+const { result, loading, variables } = useQuery(
+  txnsQuery,
+  {
+    orderBy: orderBy.value,
+    orderDirection: orderDirection.value,
+  },
+  { clientId: chainId.toString() }
+);
+
+watch(result, () => {
+  txns.value = result.value.transactions;
+});
 
 function sort(column: string, value: string) {
   // Update Query variables. Will trigger a refetch
