@@ -3,7 +3,7 @@ export const BORROWING_FEE_FLOOR = 0.5; // 0.5%
 
 // Interface Constants (Chain-specific)
 export const rpcUrls = {
-  5: "https://eth-goerli.g.alchemy.com/v2/bUBow_fw7HN-4XVaMW4uwCgaf1awGxsA",
+  5: "https://eth-goerli.g.alchemy.com/v2/gC3ngizmtuuBG8iLPjN6uGKiNydSruGu",
 } as Record<number, string>;
 
 export const explorerUrls = {
