@@ -70,7 +70,7 @@ watch(result, () => {
               class="rotate-90"
               width="26"
             />
-            <span>{{ totalDebt }}</span>
+            <span>{{ parseFloat(totalDebt.toFixed(4)) }}</span>
           </div>
         </h1>
       </div>
