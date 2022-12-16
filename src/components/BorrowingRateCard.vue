@@ -81,7 +81,7 @@ const series = ref([
     <template v-if="loading">Loading...</template>
     <template v-else>
       <h4 class="font-medium text-sm dark:(text-gray-400)">Borrowing rate</h4>
-      <h1>{{ currentBaseRate }}%</h1>
+      <h1>{{ parseFloat(Number(currentBaseRate).toFixed(6)) }}%</h1>
 
       <apexchart height="200" type="line" :options="options" :series="series"></apexchart>
     </template>
