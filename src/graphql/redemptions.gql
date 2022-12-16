@@ -1,5 +1,5 @@
-query {
-  redemptions(first: 10) {
+query ($orderBy: String!, $orderDirection: String!) {
+  redemptions(first: 10, orderBy: $orderBy, orderDirection: $orderDirection) {
     id
     vault {
       id

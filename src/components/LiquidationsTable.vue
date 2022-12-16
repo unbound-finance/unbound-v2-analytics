@@ -22,7 +22,10 @@ const { chainId } = useWeb3Store();
 // GraphQL
 const { result, loading } = useQuery(
   liquidationsQuery,
-  {},
+  {
+    orderBy: "timestamp",
+    orderDirection: "desc",
+  },
   { clientId: chainId.toString() }
 );
 
